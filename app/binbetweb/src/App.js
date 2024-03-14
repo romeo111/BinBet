@@ -2,60 +2,67 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [timer, setTimer] = useState(60); // Timer for the trade game (60 seconds)
-  const [stakeTimer, setStakeTimer] = useState(45); // Timer for making stakes (45 seconds)
-  const [volume, setVolume] = useState(5); // Initial volume trade set to 5%
+  const [account, setAccount] = useState('');
 
   useEffect(() => {
-    const tradeTimer = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
-    }, 1000);
-
-    const stakeTimer = setInterval(() => {
-      setStakeTimer((prevStakeTimer) => prevStakeTimer - 1);
-    }, 1000);
-
-    // Cleanup intervals on unmount
-    return () => {
-      clearInterval(tradeTimer);
-      clearInterval(stakeTimer);
+    const checkMetaMaskAvailability = async () => {
+      if (window.ethereum) {
+        try {
+          // Request account access if needed
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          // Accounts now exposed, set the first account as the user's account
+          setAccount(accounts[0]);
+        } catch (error) {
+          console.error("User denied account access or there's an error", error);
+        }
+      } else {
+        console.log('MetaMask is not installed!');
+      }
     };
+
+    checkMetaMaskAvailability();
+
+    // Handling account change
+    window.ethereum?.on('accountsChanged', (accounts) => {
+      setAccount(accounts[0]);
+    });
+
+    // Handling chain change (refresh the page to reload in case of chain change)
+    window.ethereum?.on('chainChanged', (chainId) => {
+      window.location.reload();
+    });
+
   }, []);
 
   return (
-    <div className="BinBet" style={{ backgroundColor: 'darkgreen', textAlign: 'center' }}>
-      <header className="BinBet-header">
-        <h1 style={{ fontSize: '4em', color: 'white' }}>BinBet</h1>
-        <p>
-          Trade Timer: {timer} seconds
-          <br />
-          Stake Timer: {stakeTimer} seconds
-          <br />
-          <input
-            type="range"
-            min={5}
-            max={100}
-            value={volume}
-            onChange={(e) => setVolume(e.target.value)}
-          />
-          <br />
-          Volume Trade: {volume}%
-        </p>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="App">
+      <header className="App-header">
+        BINBET
       </header>
+      <div className="Wallet">
+        {account ? (
+          <p>Connected Wallet: {account}</p>
+        ) : (
+          <button onClick={() => window.ethereum.request({ method: 'eth_requestAccounts' })}>
+            Connect Wallet
+          </button>
+        )}
+      </div>
+ <div className="Buttons">
+        <button className="BuyButton">Buy</button>
+        <button className="SellButton">Sell</button>
+      </div>
+      <div className="BitcoinPrice" style={{ width: '100%', height: 'fit-content', aspectRatio: '1200 / 630' }}>
+        <iframe
+          style={{ width: '100%', height: '100%', aspectRatio: '1200 / 630' }}
+          src="https://www.coindesk.com/embedded-chart/wjtPzLtMrbmpj"
+          frameBorder="0"
+          scrolling="no"
+        ></iframe>
+      </div>
+     
     </div>
   );
 }
 
 export default App;
-

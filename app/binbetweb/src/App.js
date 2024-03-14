@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        BINBET
+        BinBet
       </header>
       <div className="Wallet">
         {account ? (
@@ -58,6 +58,7 @@ function App() {
           src="https://www.coindesk.com/embedded-chart/wjtPzLtMrbmpj"
           frameBorder="0"
           scrolling="no"
+	title="Embedded Bitcoin Price Chart"
         ></iframe>
       </div>
      

@@ -1,69 +1,113 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import Watch from './watch.jsx'
 
-function App() {
+
+function useMetaMaskAccount() {
   const [account, setAccount] = useState('');
+  const [balance, setBalance] = useState('');
+
+  const checkMetaMaskAvailability = useCallback(async () => {
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setAccount(accounts[0]);
+        await fetchBalance(accounts[0]);
+      } catch (error) {
+        console.error("User denied account access or there's an error", error);
+      }
+    } else {
+      alert('MetaMask is not installed!');
+    }
+  }, []);
+
+  const fetchBalance = useCallback(async (account) => {
+    if (window.ethereum && account) {
+      const balanceWei = await window.ethereum.request({
+        method: 'eth_getBalance',
+        params: [account, 'latest']
+      });
+      const balanceEth = window.web3.utils.fromWei(balanceWei, 'ether');
+      setBalance(balanceEth);
+    }
+  }, []);
+
+  const logout = useCallback(() => {
+    setAccount('');
+    setBalance('');
+  }, []);
 
   useEffect(() => {
-    const checkMetaMaskAvailability = async () => {
-      if (window.ethereum) {
-        try {
-          // Request account access if needed
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          // Accounts now exposed, set the first account as the user's account
-          setAccount(accounts[0]);
-        } catch (error) {
-          console.error("User denied account access or there's an error", error);
-        }
+    const handleAccountsChanged = (accounts) => {
+      if (accounts.length === 0) {
+        logout();
       } else {
-        console.log('MetaMask is not installed!');
+        setAccount(accounts[0]);
+        fetchBalance(accounts[0]);
       }
     };
 
-    checkMetaMaskAvailability();
-
-    // Handling account change
-    window.ethereum?.on('accountsChanged', (accounts) => {
-      setAccount(accounts[0]);
-    });
-
-    // Handling chain change (refresh the page to reload in case of chain change)
-    window.ethereum?.on('chainChanged', (chainId) => {
+    const handleChainChanged = () => {
       window.location.reload();
-    });
+    };
 
-  }, []);
+    window.ethereum?.on('accountsChanged', handleAccountsChanged);
+    window.ethereum?.on('chainChanged', handleChainChanged);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        BinBet
-      </header>
-      <div className="Wallet">
-        {account ? (
-          <p>Connected Wallet: {account}</p>
-        ) : (
-          <button onClick={() => window.ethereum.request({ method: 'eth_requestAccounts' })}>
-            Connect Wallet
-          </button>
-        )}
-      </div>
- <div className="Buttons">
-        <button className="BuyButton">Buy</button>
-        <button className="SellButton">Sell</button>
-      </div>
-      <div className="BitcoinPrice" style={{ width: '100%', height: 'fit-content', aspectRatio: '1200 / 630' }}>
-        <iframe
-          style={{ width: '100%', height: '100%', aspectRatio: '1200 / 630' }}
-          src="https://www.coindesk.com/embedded-chart/wjtPzLtMrbmpj"
-          frameBorder="0"
-          scrolling="no"
-	title="Embedded Bitcoin Price Chart"
-        ></iframe>
-      </div>
-     
-    </div>
-  );
+    return () => {
+      window.ethereum?.removeListener('accountsChanged', handleAccountsChanged);
+      window.ethereum?.removeListener('chainChanged', handleChainChanged);
+    };
+  }, [fetchBalance, logout]);
+
+  return { account, balance, checkMetaMaskAvailability, logout };
 }
 
+function App() {
+  const { account, balance, checkMetaMaskAvailability, logout } = useMetaMaskAccount();
+
+  return (
+
+   
+
+    <div className="App">
+      {/* Wallet Row */}
+      <div className="WalletRow">
+        <h2>BinBet</h2>
+        <div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
+          Status: {account ? 'Connected' : 'Disconnected'}
+        </div>
+        <div>Balance: {balance} ETH</div>
+        {account ? (
+          <button onClick={logout}>Log Out</button>
+        ) : (
+          <button onClick={checkMetaMaskAvailability}>Connect Wallet</button>
+        )}
+      </div>
+
+<div className="TradingSection">
+          {/* Trading Buttons */}
+		<button className="TradeButton BuyButton">Buy ↑</button>
+<Watch />
+		<button className="TradeButton SellButton">Sell ↓</button>
+        </div>
+      {/* Main Content */}
+      <div className="MainContent">
+        <div className="ChartSection">
+          {/* Trading Chart */}
+           <iframe
+    src="https://www.coindesk.com/embedded-chart/wjtPzLtMrbmpj"
+    frameBorder="0"
+    scrolling="no"
+    title="Embedded Bitcoin Price Chart"
+    style={{ width: '100%', height: '500px' }} // Adjust height as needed
+  ></iframe>
+        </div>
+        
+
+      </div>
+    </div>
+
+  );
+}
 export default App;

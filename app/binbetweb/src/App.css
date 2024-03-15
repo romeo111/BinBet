@@ -1,33 +1,75 @@
 .App {
   text-align: center;
+}
+
+.WalletRow {
   background-color: black;
   color: white;
-  height: 100vh;
-  padding: 20px;
-}
-
-.App-header {
-  font-size: 2em;
-  margin: 20px;
-}
-
-.BitcoinPrice {
-  margin: 20px auto;
-  border: 1px solid white;
-  color: white;
-}
-
-.BuyButton, .SellButton {
-  font-size: 1.5em;
-  margin: 20px;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MainContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ChartSection {
+  flex: 2; /* 2/3 of the space */
+  padding: 0px;
+}
+
+.TradingSection {
+  flex: 1; /* 1/3 of the space */
+  display: flex;
+
+  padding: 10px;
+}
+
+.TradeButton {
+  margin: 10px 0;
+  padding: 10px;
+  width: 50%;
+
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .MainContent {
+    flex-direction: column;
+  }
+
+  .ChartSection, .TradingSection {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.TradeButton {
+  padding: 20px 40px;
+  margin: 5px;
+  border: none;
   cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px; /* Optional: adds rounded corners */
+  color: white; /* White text color */
+  font-size: 500%;
 }
 
 .BuyButton {
-  background-color: green;
+  background-color: #4CAF50; /* Green background */
+}
+
+.BuyButton:hover {
+  background-color: #45a049; /* Darker green on hover */
 }
 
 .SellButton {
-  background-color: red;
+  background-color: #f44336; /* Red background */
+}
+
+.SellButton:hover {
+  background-color: #da190b; /* Darker red on hover */
 }

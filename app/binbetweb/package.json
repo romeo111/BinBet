@@ -2,7 +2,7 @@
   "name": "binbetweb",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://romeo111.github.io/BinBet",
+"homepage": "romeo111.gthub.io/binbet/app/binbetapp",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

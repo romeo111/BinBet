@@ -1,3 +1,3 @@
 # BinBet
 Play-to-Earn Trading Game
-romeo111 first two
+(с) 2024

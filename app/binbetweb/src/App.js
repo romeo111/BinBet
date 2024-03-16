@@ -32,10 +32,14 @@ function useMetaMaskAccount() {
     }
   }, []);
 
-  const logout = useCallback(() => {
-    setAccount('');
-    setBalance('');
-  }, []);
+const logout = () => {
+  // Resetting the state variables
+  setAccount('');
+  setBalance('');
+
+  // Optionally, trigger a state refresh in your app if needed
+  // This might depend on how your app is structured
+};
 
   useEffect(() => {
     const handleAccountsChanged = (accounts) => {
@@ -75,7 +79,7 @@ function App() {
       <div className="WalletRow">
         <h2>BinBet</h2>
         <div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
-          Status: {account ? 'Connected' : 'Disconnected'}
+          Status: {account ? 'Metamask Connected' : 'Metamask Disconnected'}
         </div>
         <div>Balance: {balance} ETH</div>
         {account ? (

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/BinBet/static/css/main.978b9d94.css",
-    "main.js": "/BinBet/static/js/main.080def6d.js",
-    "static/js/453.25724621.chunk.js": "/BinBet/static/js/453.25724621.chunk.js",
+    "main.js": "/BinBet/static/js/main.c997f0c3.js",
+    "static/js/453.ef6685f4.chunk.js": "/BinBet/static/js/453.ef6685f4.chunk.js",
     "index.html": "/BinBet/index.html",
     "main.978b9d94.css.map": "/BinBet/static/css/main.978b9d94.css.map",
-    "main.080def6d.js.map": "/BinBet/static/js/main.080def6d.js.map",
-    "453.25724621.chunk.js.map": "/BinBet/static/js/453.25724621.chunk.js.map"
+    "main.c997f0c3.js.map": "/BinBet/static/js/main.c997f0c3.js.map",
+    "453.ef6685f4.chunk.js.map": "/BinBet/static/js/453.ef6685f4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.978b9d94.css",
-    "static/js/main.080def6d.js"
+    "static/js/main.c997f0c3.js"
   ]
 }

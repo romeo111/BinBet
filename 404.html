@@ -25,7 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>BinBet - fast web3 trading app</title>
-404 head fghdg
+404 head 
   </head>
   <body>
 
@@ -41,5 +41,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+	  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Redirect to the home page, retaining the path
+    var pathname = window.location.pathname;
+    window.location.replace('/#' + pathname);
+  });
+</script>
   </body>
+
 </html>

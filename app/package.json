@@ -2,7 +2,7 @@
   "name": "BinBet",
   "version": "0.1.1",
   "private": true,
-  "homepage": "https://romeo111.github.io/BinBet",
+  "homepage": "https://binbet.pro/app",
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2",
     "@testing-library/jest-dom": "^5.17.0",

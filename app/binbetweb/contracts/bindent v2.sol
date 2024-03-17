@@ -12,7 +12,7 @@ contract BinBet is AccessControl, ReentrancyGuard {
         uint256 volume;
         uint32 timestamp;
         TradeType tradeType;
-        string userID; // 
+        string userID; // Changed from dealerID to userID
     }
 
     mapping(address => Trader) public traders;

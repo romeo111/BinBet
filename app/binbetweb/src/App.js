@@ -77,24 +77,20 @@ function App() {
     <div className="App">
       {/* Wallet Row */}
       <div className="WalletRow">
-        <h2>BinBet</h2>
-        <div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
+        <h2>BinBet </h2>
+        
+
+        <div>Balance: {balance} ETH</div><div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
           Status: {account ? 'Metamask Connected' : 'Metamask Disconnected'}
         </div>
-        <div>Balance: {balance} ETH</div>
         {account ? (
           <button onClick={logout}>Log Out</button>
         ) : (
           <button onClick={checkMetaMaskAvailability}>Connect Wallet</button>
         )}
-      </div>
 
-<div className="TradingSection">
-          {/* Trading Buttons */}
-		<button className="TradeButton BuyButton">Buy ↑</button>
+      </div>
 <Watch />
-		<button className="TradeButton SellButton">Sell ↓</button>
-        </div>
       {/* Main Content */}
       <div className="MainContent">
         <div className="ChartSection">
@@ -110,6 +106,13 @@ function App() {
         
 
       </div>
+<div className="TradingSection">
+          {/* Trading Buttons */}
+		<button className="TradeButton BuyButton">Buy ↑</button>
+
+		<button className="TradeButton SellButton">Sell ↓</button>
+        </div>
+
     </div>
 
   );

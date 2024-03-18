@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './App.css';
+import './binbet.css';
 import Watch from './watch.jsx'
 
 

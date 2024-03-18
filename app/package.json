@@ -2,7 +2,7 @@
   "name": "BinBet",
   "version": "0.1.1",
   "private": true,
-  "homepage": "https://binbet.pro/app",
+  "homepage": "https://binbet.pro",
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2",
     "@testing-library/jest-dom": "^5.17.0",

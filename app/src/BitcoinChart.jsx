@@ -10,7 +10,7 @@ const BitcoinChart = () => {
       try {
         const response = await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
           headers: {
-            'X-CMC_PRO_API_KEY': 'YOUR_API_KEY'
+            'X-CMC_PRO_API_KEY': '9cf8fa74-4e78-4874-bcd9-f4d7d7594df0'
           },
           params: {
             start: 1,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './binbet.css';
 import Watch from './watch.jsx'
-import BitcoinChart from './BitcoinChart.js'
+import BitcoinChart from './BitcoinChart.jsx'
 import axios from 'axios';
 
 function useMetaMaskAccount() {
@@ -72,43 +72,35 @@ function App() {
   const { account, balance, checkMetaMaskAvailability, logout } = useMetaMaskAccount();
 
   return (
-
-   
-
     <div className="App">
-      {/* Wallet Row */}
-      <div className="WalletRow">
-        <h2>BinBet </h2>
-        
-
-        <div>Balance: {balance} ETH</div><div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
-          Status: {account ? 'Metamask Connected' : 'Metamask Disconnected'}
+      {/* Header and MetaMask Wallet Info */}
+      <header className="App-header">
+        <h2>BinBet</h2>
+        <div className="WalletRow">
+          <div className="WalletInfo" title={account ? "Wallet Address: " + account : "Wallet Disconnected"}>
+            Status: {account ? 'Metamask Connected' : 'Metamask Disconnected'} - Balance: {balance} ETH
+          </div>
+          {account ? (
+            <button onClick={logout}>Log Out</button>
+          ) : (
+            <button onClick={checkMetaMaskAvailability}>Connect Wallet</button>
+          )}
         </div>
-        {account ? (
-          <button onClick={logout}>Log Out</button>
-        ) : (
-          <button onClick={checkMetaMaskAvailability}>Connect Wallet</button>
-        )}
+      </header>
+      
+      {/* Bitcoin Price Tracker */}
+      <main>
+        <h1>Bitcoin Price Tracker</h1>
+        <BitcoinChart />
+      </main>
 
-      </div> <Watch />
-      {/* Main Content */}
-      <div className="MainContent">
-        <div className="ChartSection">
-          {/* Trading Chart */}
-
-<BitcoinChart />
-
-        </div>
+      {/* Trading Section */}
+      <div className="TradingSection">
+        <button className="TradeButton BuyButton">Buy ↑</button>
+        <button className="TradeButton SellButton">Sell ↓</button>
       </div>
-<div className="TradingSection">
-          {/* Trading Buttons */}
-		<button className="TradeButton BuyButton">Buy ↑</button>
-
-		<button className="TradeButton SellButton">Sell ↓</button>
-        </div>
-
     </div>
-
   );
 }
+
 export default App;

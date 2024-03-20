@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import './binbet.css';
 import Watch from './watch.jsx'
 import BitcoinChart from './BitcoinChart.jsx'
-import axios from 'axios';
+import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 
 function useMetaMaskAccount() {
   const [account, setAccount] = useState('');

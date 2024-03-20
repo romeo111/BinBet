@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './binbet.css';
 import Watch from './watch.jsx'
-
+import BitcoinChart from './BitcoinChart.js'
+import axios from 'axios';
 
 function useMetaMaskAccount() {
   const [account, setAccount] = useState('');
@@ -89,22 +90,15 @@ function App() {
           <button onClick={checkMetaMaskAvailability}>Connect Wallet</button>
         )}
 
-      </div>
-<Watch />
+      </div> <Watch />
       {/* Main Content */}
       <div className="MainContent">
         <div className="ChartSection">
           {/* Trading Chart */}
-           <iframe
-    src="https://www.coindesk.com/embedded-chart/wjtPzLtMrbmpj"
-    frameBorder="0"
-    scrolling="no"
-    title="Embedded Bitcoin Price Chart"
-    style={{ width: '100%', height: '500px' }} // Adjust height as needed
-  ></iframe>
-        </div>
-        
 
+<BitcoinChart />
+
+        </div>
       </div>
 <div className="TradingSection">
           {/* Trading Buttons */}

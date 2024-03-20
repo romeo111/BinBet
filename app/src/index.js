@@ -4,6 +4,8 @@ import './index.css';
 import App from './binbet';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+
 
 // Use createRoot instead of ReactDOM.render
 const root = createRoot(document.getElementById('root')); // Use createRoot instead of ReactDOM.createRoot
@@ -13,6 +15,6 @@ root.render(
   </BrowserRouter>
 );
 
-// Remove ReactDOM.render call
+
 
 reportWebVitals();

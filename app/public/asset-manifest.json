@@ -1,7 +1,7 @@
 {
  "start_url": "https://binbet.pro/app",
   "files": {
-    "main.css": "static/css/main.978b9d94.css",
+    "main.css": "/app/static/css/main.978b9d94.css",
     "main.js": "/app/static/js/main.db86eea5.js",
     "static/js/453.27c8769d.chunk.js": "/app/static/js/453.27c8769d.chunk.js",
     "index.html": "/app/index.html",

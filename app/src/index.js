@@ -4,7 +4,14 @@ import './index.css';
 import App from './binbet';
 import reportWebVitals from './reportWebVitals';
 //
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  <BrowserRouter basename="/Binbet">
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 //
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

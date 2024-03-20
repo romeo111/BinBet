@@ -93,8 +93,7 @@ function App() {
       
       {/* Bitcoin Price Tracker */}
       <main>
-        <h1>Bitcoin Price Tracker</h1>
-        <BitcoinChart />
+              <BitcoinChart />
       </main>
 
       {/* Trading Section */}

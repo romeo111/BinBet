@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'; // Import createRoot from react-dom/client instead of react-dom
 import './index.css';
 import App from './binbet';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 // Use createRoot instead of ReactDOM.render
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root')); // Use createRoot instead of ReactDOM.createRoot
 root.render(
   <BrowserRouter basename="/app">
     <App />
@@ -14,7 +14,5 @@ root.render(
 );
 
 // Remove ReactDOM.render call
-
-// You can keep other code as it is
 
 reportWebVitals();

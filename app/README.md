@@ -1,1 +1,4 @@
-app root readme.md2
+BinBet 
+Trading App
+
+(c) 2024
